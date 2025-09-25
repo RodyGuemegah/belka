@@ -1,3 +1,4 @@
+import 'package:belka_app/features/auth/screens/admin_dashboard.dart';
 import 'package:belka_app/features/auth/screens/inscription.dart';
 import 'package:belka_app/features/dashboard/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -52,6 +53,7 @@ class BelkaApp extends StatelessWidget {
         '/profil': (context) => const ProfilScreen(),
         '/register': (context) => const RegisterPage(),
         '/home': (context) => const HomePage(),
+        '/admin': (context) => const AdminDashboard(),
       },
       home: const Wrapper(), // ✅ Wrapper devient la porte d'entrée
     );
