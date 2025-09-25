@@ -69,6 +69,16 @@ class _AdminDashboardState extends State<AdminDashboard> {
               icon: const Icon(Icons.add),
               label: const Text("Créer un événement"),
             ),
+             ElevatedButton.icon(
+                                onPressed: () => Navigator.pushReplacementNamed(context, '/home'),
+                                icon: Icon(Icons.home),
+                                label: const Text('Home'),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: Colors.black,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                ),
+                              ),
             const SizedBox(height: 20),
 
             // --- Recherche utilisateur ---

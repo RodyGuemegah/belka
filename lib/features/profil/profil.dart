@@ -199,12 +199,12 @@ class ProfilScreen extends StatelessWidget {
                                 onPressed: () => Navigator.pushReplacementNamed(context, '/admin'),
                                 child: const Text('Admin Dashboard'),
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blue,
+                                  backgroundColor: Colors.black,
                                   foregroundColor: Colors.white,
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                                 ),
                               ),
-                              const SizedBox(width: 12),
+                              const SizedBox(width: 10),
                               ElevatedButton(
                                 onPressed: () async {
                                   await FirebaseAuth.instance.signOut();
@@ -214,7 +214,7 @@ class ProfilScreen extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.red,
                                   foregroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                 ),
                               ),
                             ],
