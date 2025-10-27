@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../data/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -14,35 +15,39 @@ class _RegisterPageState extends State<RegisterPage> {
   final _nameController = TextEditingController();
   String? selectedRole;
 
+  bool _obscurePassword = true;
+
   final AuthService _authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.blueGrey[50],
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Créer un compte",
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  )),
+              Text(
+                "Créer un compte",
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueAccent.shade700,
+                ),
+              ),
               const SizedBox(height: 30),
 
               // Input nom
               TextField(
                 controller: _nameController,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                   hintText: "Nom complet",
                   hintStyle: TextStyle(color: Colors.grey),
                   filled: true,
-                  fillColor: Colors.grey[900],
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide.none,
@@ -54,12 +59,12 @@ class _RegisterPageState extends State<RegisterPage> {
               // Input email
               TextField(
                 controller: _emailController,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                   hintText: "Email",
                   hintStyle: TextStyle(color: Colors.grey),
                   filled: true,
-                  fillColor: Colors.grey[900],
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide.none,
@@ -71,13 +76,24 @@ class _RegisterPageState extends State<RegisterPage> {
               // Input mot de passe
               TextField(
                 controller: _passwordController,
-                obscureText: true,
-                style: TextStyle(color: Colors.white),
+                obscureText: _obscurePassword,
+                style: TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                   hintText: "Mot de passe",
                   hintStyle: TextStyle(color: Colors.grey),
                   filled: true,
-                  fillColor: Colors.grey[900],
+                  suffixIcon: IconButton(
+                    onPressed: (){
+                      setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      });
+                    },
+                    icon: Icon(
+                      _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                      size: 22,
+                      color: Colors.blueGrey.shade500,
+                    )),
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide.none,
@@ -87,8 +103,10 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 25),
 
               // Sélecteur de rôle stylé
-              Text("Choisissez votre rôle",
-                  style: TextStyle(color: Colors.white, fontSize: 18)),
+              Text(
+                "Choisissez votre rôle",
+                style: TextStyle(color: Colors.black, fontSize: 18),
+              ),
               const SizedBox(height: 15),
 
               Row(
@@ -103,7 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
               // Bouton Inscription
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.tealAccent[700],
+                  backgroundColor: Colors.blueAccent.shade700,
                   minimumSize: Size(double.infinity, 55),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -122,13 +140,17 @@ class _RegisterPageState extends State<RegisterPage> {
                         Navigator.pushReplacementNamed(context, "/home");
                       }
                     } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(e.toString())),
-                      );
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(SnackBar(content: Text(e.toString())));
                     }
                   }
                 },
-                child: Text("S'inscrire", style: TextStyle(fontSize: 18)),
+                child: Text(
+                  "S'inscrire",
+                  style: GoogleFonts.poppins(
+                              fontSize: 16, fontWeight: FontWeight.w600),
+                ),
               ),
             ],
           ),
@@ -149,7 +171,7 @@ class _RegisterPageState extends State<RegisterPage> {
         width: 140,
         height: 100,
         decoration: BoxDecoration(
-          color: isSelected ? Colors.tealAccent[700] : Colors.grey[900],
+          color: isSelected ? const Color.fromARGB(255, 147, 147, 147) : Colors.grey[900],
           borderRadius: BorderRadius.circular(12),
           border: isSelected
               ? Border.all(color: Colors.white, width: 2)
@@ -160,11 +182,13 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             Icon(icon, color: Colors.white, size: 32),
             const SizedBox(height: 10),
-            Text(label,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight:
-                        isSelected ? FontWeight.bold : FontWeight.normal)),
+            Text(
+              label,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
           ],
         ),
       ),

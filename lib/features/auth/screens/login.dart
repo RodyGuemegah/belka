@@ -15,6 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
 
   bool isLoading = false;
+  bool _obscurePassword = true;
 
 
 
@@ -45,7 +46,6 @@ class _LoginPageState extends State<LoginPage> {
         );
       }
     }
-
 
 
   @override
@@ -104,27 +104,32 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 15),
 
               // Champ Mot de passe
-              TextField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.lock),
-                  hintText: "Mot de passe",
-                  filled: true,
-                  suffixIcon: IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.visibility_off,
-                    size: 22,
-                    color: Colors.grey.shade500,
-                    ),
-                  ),
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
+          TextField(
+  controller: passwordController,
+  obscureText: _obscurePassword,
+  decoration: InputDecoration(
+    prefixIcon: const Icon(Icons.lock),
+    hintText: "Mot de passe",
+    filled: true,
+    suffixIcon: IconButton(
+      onPressed: () {
+        setState(() {
+          _obscurePassword = !_obscurePassword;
+        });
+      },
+      icon: Icon(
+        _obscurePassword ? Icons.visibility_off : Icons.visibility,
+        size: 22,
+        color: Colors.grey.shade500,
+      ),
+    ),
+    fillColor: Colors.white,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: BorderSide.none,
+    ),
+  ),
+),
               
 
               const SizedBox(height: 5),

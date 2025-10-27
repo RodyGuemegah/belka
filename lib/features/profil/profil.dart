@@ -73,7 +73,10 @@ class ProfilScreen extends StatelessWidget {
                                   Text(email, style: const TextStyle(fontSize: 15, color: Colors.grey)),
                                   const SizedBox(height: 12),
                                   OutlinedButton.icon(
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                      await FirebaseAuth.instance.signOut();
+                                      Navigator.pushReplacementNamed(context, '/edit_profil');
+                                    },
                                     icon: const Icon(Icons.edit, size: 18),
                                     label: const Text("Modifier le profil"),
                                     style: OutlinedButton.styleFrom(
